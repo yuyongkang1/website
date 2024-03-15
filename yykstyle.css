@@ -13,3 +13,10 @@ table tr td
    padding:2px 3px 2px 3px;
    text-shadow:1px 1px grey
 }
+input
+{
+   font-family:Comic Sans MS,cursive,sans-serif;
+   font-size:24px;
+   font-weight:676;
+   padding:2ox 3px 2px 3px;
+}
