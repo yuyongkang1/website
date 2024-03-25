@@ -1,0 +1,41 @@
+<html>
+<head>
+<style>
+@keyframes slide
+{
+	0%{background-image:url(image/800.jpg)}
+	10%{background-image:url(image/800.jpg)}
+	20%{background-image:url(image/800.jpg)}
+	30%{background-image:url(image/800.jpg)}
+	40%{background-image:url(image/800.jpg)}
+	50%{background-image:url(image/800.jpg)}
+	60%{background-image:url(image/800.jpg)}
+	70%{background-image:url(image/800.jpg)}
+	80%{background-image:url(image/800.jpg)}
+	90%{background-image:url(image/800.jpg)}
+	}
+	@keyframes movep
+	{
+	0%{background-position:0px 0px;opacit:0.2;transform:rotate(0deg)}
+	100%{background-position:-156px 0px;opacity:1.0;transform:rotate(359deg)}
+	}
+	#div2{
+	animation:movep 5s 1;
+	background-image:url(image/800.jpg);
+	width:200px;height:200px;
+	background-repeat:no-repeat;
+	background-position:-156px 0px;
+	transform-origin:356px 50px
+	}
+	
+	#div1{animation:slide 15s infinite;
+	width:400px;height:300px;
+	background-repeat:no-repeat;
+	}
+	</style>
+	</head>
+	<body>
+	<div id=div2></div>
+	</body>
+	</html>
+	
