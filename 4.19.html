@@ -1,0 +1,59 @@
+<script>
+//array = RAM,random access memory,x[i]
+let x = [];//resizable
+//js array can be used as Stack,
+//queue (enqueue at the tail,dequeue at the head)
+//x = new Array();
+//x = new Array(100);
+x[0] = 1;
+document.write("x="+x+"<br>");
+x[x.length] = 2;//grow
+document.write("x="+x+"<br>");
+x.push(2233);
+document.write("x="+x+"<br>");
+let y = x.pop();
+document.write("x="+x+"<br>");
+x[0] = 44;
+document.write("x="+x+"<br>");
+document.write("x.length"+x.length+"<br>");
+let z = x.shift();//remove x[0]
+document.write("x="+x+"<br>");
+
+let j=x.indexOf(2);
+document.write("j="+j+"<br>");
+let k =x.indexOf(3);
+document.write("k="+k+"<br>");
+let m =x.indexOf(2,1);
+document.write("m="+m+"<br>");
+
+//x.splice(start,num2delete,newelemt1,newelemt2,...);
+x.splice(1,0,3,4,5,6,7,8,9);
+document.write("x.length="+x.length+"<br>");
+x.splice(2,3);
+document.write("x.length="+x.length+"<br>");
+x.splice(0,0,3,5,6);//add on the tail,
+for(let y in x)//y:[0...7]
+{
+	Document.write(y+":"+x[y]+"; ");
+}
+document.write("<br>");
+for(let y=0;y<x.length;y++)//y:[0...7]
+{
+	Document.write(y+":"+x[y]+"; ");
+}
+document.write("<br>");
+for(let y of x)
+{
+document.write(y+"; ");
+}
+x.sort();
+document.write("<br>");
+for(let y of x)
+{
+document.write(y+"; ");
+}
+
+
+
+
+</script>
