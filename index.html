@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Tower of Hanoi</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .clsl {
+                color: purple;
+            }
+
+            .layer {
+                position: absolute;
+                background-color: orange;
+                border-radius: 10px;
+
+            }
+
+            .tower {
+                width: 20px;
+                height: 450px;
+                background-color: brown;
+                position: absolute;
+                top:100px;
+            }
+            .tower1 {
+                width: 1170px;
+                height: 20px;
+                background-color: brown;
+                position: absolute;
+                top:550px;
+            }
+        </style>
+        <style id="dynamic">
+            @keyframes diskmove {
+                0% {
+                    left: 100px;
+                    top: 200px;
+                }
+                100% {
+                    left: 400px;
+                    top: 500px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            Number of Disks:
+            <select id="numdisks">
+                <option value="3">3 disks</option>
+                <option value="4">4 disks</option>
+                <option value="5">5 disks</option>
+                <option value="6">6 disks</option>
+                <option value="7">7 disks</option>
+                <option value="8">8 disks</option>
+                <option value="9">9 disks</option>
+                <option value="10">10 disks</option>
+
+            </select>
+            <input type="button" id="startbtn" value="Start" class="butlooking" onclick="startgame()"
+                   onmouseenter="showhint('Select number of disks then click this button to start', 'start')"
+                   onmouseout="hidehint('start')">
+            <input type="button" id="pausebtn" value="Pause" class="butlooking" onclick="pauseGame()"
+                   onmouseenter="showHint('Pause the game', 'pause')"
+                   onmouseout="hideHint('pause')">
+
+            <input type="button" id="resumebtn" value="Resume" class="butlooking" onclick="resumegame()"
+                   onmouseenter="showhint('Resume the game', 'resume')"
+                   onmouseout="hidehint('resume')">
+            Time Period:
+            <select id="period">
+                <option value="0.5">0.5 seconds</option>
+                <option value="1">1 second</option>
+                <option value="1.5">1.5 seconds</option>
+                <option value="2">2 seconds</option>
+                <option value="2.5">2.5 seconds</option>
+            </select>
+        </div>
+
+        <div id="tower1" class="tower" style="left: 95px;"></div>
+        <div id="tower2" class="tower" style="left: 610px;"></div>
+        <div id="tower3" class="tower" style="left: 1190px;"></div>
+        <div id="tower4" class="tower1" style="left: 75px;"></div>
+
+
+
+        <script>
+            let orderOfInstructions;
+            let handle;
+            let N;
+            let period;
+            let isPaused = false; 
+
+            function showhint(hint, key) {
+                let dv = document.createElement('div');
+                dv.id = key;
+                dv.style.cssText = 'position:absolute;left:300px;top:200px;background-color:yellow;color:purple;box-shadow:3px 3px #674578';
+                dv.className = 'cnmae';
+                dv.innerHTML = hint;
+                document.body.appendChild(dv);
+            }
+
+            function hidehint(key) {
+                let dv = document.getElementById(key);
+                dv.parentNode.removeChild(dv);
+            }
+
+            function startgame() {
+                let s = document.getElementById('numdisks');
+                let nd = s.options[s.selectedIndex].value;
+                N = parseInt(nd);
+           
+                move(); // generate instructions
+                movedisk(0); // execute 1st instruction and schedule 2nd
+            }
+
+            function pausegame() {
+                clearTimeout(handle);
+                isPaused = true; // 设置isPaused为true
+            }
+
+            function resumegame() {
+                isPaused = false; // 设置isPaused为false
+                movedisk(orderOfInstructions);
+            }
+            function movedisk(n) {
+                if (isPaused) {
+                    return;
+                }
+
+                if (n < orderOfInstructions.length) {
+                    let i = orderOfInstructions[n][0];
+                    let j = orderOfInstructions[n][1];
+                    moveone(i, j);
+                    n++;
+                    handle = setTimeout(function () {
+                        movedisk(n);
+                    }, period);
+                }
+            }
+
+
+
+
+
+            function tower(n) {
+                let tower1 = document.getElementById('tower1');
+                let tower2 = document.getElementById('tower2');
+                let tower3 = document.getElementById('tower3');
+                let tower4 = document.getElementById('tower4');
+                tower1.innerHTML = '';
+                tower2.innerHTML = '';
+                tower3.innerHTML = '';
+                tower4.innerHTML = '';
+
+            }
+
+
+
+
+
+
+        </script>
+        <script src="js/Drag.js"></script>
+        <script src="js/Hanoi.js"></script>            
+    </body>
+</html>
+<!--div>
+    <div style="background-color: yellow;width:200px;height: 60px;border-radius: 100px/30px;z-index: 1"></div> 
+<div style="position: relative;top:-30px;background-color: orange;width:200px;height: 20px;z-index: 2"></div>
+    <div style="position: relative;top:-60px;background-color: yellow;width:200px;height: 60px;border-radius: 100px/30px;border: 1px red solid;z-index: 10"></div>
+
+
+
+
+</div>
+    </body>
+</html>
